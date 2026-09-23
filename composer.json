@@ -1,0 +1,65 @@
+{
+    "name": "graph-mail/laravel-graph-mail-legacy",
+    "description": "Send Laravel 8 mail through the Microsoft Graph API (Mail.Send application permission) — no SMTP, no app passwords, works with modern-auth-only tenants. PHP 7.3+ / Laravel 8 compatible fork of graph-mail/laravel-graph-mail.",
+    "keywords": [
+        "laravel",
+        "laravel8",
+        "mail",
+        "mailer",
+        "microsoft-graph",
+        "office365",
+        "outlook",
+        "azure-ad",
+        "smtp-alternative",
+        "swiftmailer"
+    ],
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Mohamed Essam",
+            "email": "mesam5081@gmail.com"
+        }
+    ],
+    "require": {
+        "php": "^7.3|^8.0",
+        "illuminate/support": "^8.0",
+        "illuminate/mail": "^8.0",
+        "swiftmailer/swiftmailer": "^6.2",
+        "guzzlehttp/guzzle": "^6.3|^7.0"
+    },
+    "require-dev": {
+        "orchestra/testbench": "^6.0",
+        "phpunit/phpunit": "^8.0|^9.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "GraphMail\\LaravelGraphMailLegacy\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "GraphMail\\LaravelGraphMailLegacy\\Tests\\": "tests/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "GraphMail\\LaravelGraphMailLegacy\\GraphMailServiceProvider"
+            ]
+        }
+    },
+    "scripts": {
+        "test": "vendor/bin/phpunit"
+    },
+    "minimum-stability": "stable",
+    "prefer-stable": true,
+    "config": {
+        "sort-packages": true,
+        "policy": {
+            "advisories": {
+                "block": false
+            }
+        }
+    }
+}
