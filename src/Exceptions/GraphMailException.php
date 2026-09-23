@@ -52,9 +52,9 @@ class GraphMailException extends Exception
     {
         return new self(
             'No sender mailbox configured. Set MS_SENDER_EMAIL in your .env '
-            . '(graph-mail.default_sender). The transport always sends as this '
-            . 'address — it does not read the "from" address on Mailables or '
-            . 'config/mail.php.'
+                . '(graph-mail.default_sender). The transport always sends as this '
+                . 'address — it does not read the "from" address on Mailables or '
+                . 'config/mail.php.'
         );
     }
 
@@ -66,8 +66,8 @@ class GraphMailException extends Exception
     {
         return new self(
             "MS_SENDER_EMAIL is set to \"{$sender}\", which is not a valid email address. "
-            . 'Check your .env for a leftover placeholder (e.g. "user@host") or a typo, '
-            . 'then run php artisan config:clear.'
+                . 'Check your .env for a leftover placeholder (e.g. "user@host") or a typo, '
+                . 'then run php artisan config:clear.'
         );
     }
 }

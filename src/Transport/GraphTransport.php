@@ -155,7 +155,20 @@ class GraphTransport extends Transport
         $htmlBody = null;
         $textBody = null;
 
-        $contentType = $message->getContentType();
+        // IMPORTANT: getContentType() reflects the *MIME structure* header,
+        // which SwiftMailer automatically rewrites to "multipart/alternative"
+        // (or "multipart/mixed") as soon as any child part/attachment is
+        // attached (e.g. via addPart() for a text/plain alternative, or
+        // attach() for a file attachment). It no longer reports the type of
+        // the message's own body once that happens. getBodyContentType()
+        // returns the type that was actually passed to setBody()/
+        // setContentType(), regardless of any children — that's what we
+        // need here to correctly detect an HTML body. Without this, a
+        // Markdown mailable (which sets an HTML body *and* adds a
+        // text/plain alternative part) would have its main body silently
+        // dropped, causing Graph to receive only the plain-text fallback
+        // (visible as raw, unrendered markdown like "[AHA](url)").
+        $contentType = $message->getBodyContentType();
         $body = $message->getBody();
 
         if ($contentType === 'text/html') {
